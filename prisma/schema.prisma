@@ -14,7 +14,7 @@ model Job {
   category              String
   description           String
 
-  requiredSkill         String
+  skills                String[]
   minimumExperience     Int
   maximumExperience     Int
   minimumEducation      String
