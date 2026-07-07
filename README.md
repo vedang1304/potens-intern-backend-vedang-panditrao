@@ -2,7 +2,6 @@
 
 A backend REST API built using **Node.js, Express.js, PostgreSQL, and Prisma ORM** that recommends the top three job opportunities based on a candidate's profile.
 
-This project was developed as part of the **Potens Backend Internship Assignment**.
 
 ---
 
@@ -17,7 +16,7 @@ This project was developed as part of the **Potens Backend Internship Assignment
 - Admin authentication using API token
 - Eligibility explanation endpoint
 - PostgreSQL database with Prisma ORM
-- Seed script containing 15+ job listings
+- Seed script containing 15 job listings
 - Input validation
 - Unit tests
 
@@ -89,7 +88,7 @@ The matching score considers:
 - Preferred Location
 - Minimum Salary Expectation
 
-Jobs are ranked based on their total score and the top three recommendations are returned along with a human-readable explanation describing why each job matches the candidate profile.
+We calculate the score based on these above listed requirements we have given these a specific scores so the particular scores are been calculated and according to it we fetch the recommendations of top 3 and provide it to the user.
 
 ---
 
@@ -328,13 +327,11 @@ Docker Compose enables one-command setup of both the application and PostgreSQL 
 
 # Future Improvements
 
-If additional development time were available, I would implement:
+For future development, I would implement:
 
 - Real authentication using JWT
 - Role-based authorization
 - Webhook subscription for newly matching jobs
-- Recommendation history
-- Recommendation analytics
 - Redis caching
 - CI/CD pipeline with GitHub Actions
 - Pagination and filtering for job catalogue
@@ -354,9 +351,8 @@ If additional development time were available, I would implement:
 
 | Tool | Approximate Usage | Purpose |
 |------|-------------------|---------|
-| ChatGPT | ~150 messages | API design, debugging, recommendation logic, Prisma, Docker, testing, documentation, README |
+| ChatGPT | ~100 messages | debugging, recommendation logic verify, Prisma, Docker, testing, documentation, README, swagger |
 | Prisma Documentation | Multiple references | ORM configuration, migrations and seed setup |
-| Express Documentation | Multiple references | Middleware and routing |
 | Swagger Documentation | Multiple references | OpenAPI configuration |
 | Docker Documentation | Multiple references | Dockerfile and Docker Compose setup |
 
