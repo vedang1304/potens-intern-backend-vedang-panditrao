@@ -4,6 +4,7 @@ const helmet = require("helmet");
 
 const recommendationRoutes = require("./routes/recomendation.routes");
 const itemRoutes = require("./routes/item.routes");
+const explainRoutes = require("./routes/explain.routes");
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
 
 app.use("/recommend", recommendationRoutes);
 app.use("/items", itemRoutes);
-
+app.use("/explain", explainRoutes);
 
 
 app.use((req, res) => {
