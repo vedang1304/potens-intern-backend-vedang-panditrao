@@ -16,8 +16,9 @@ const calculateScore = (profile, job) => {
         categoryMatched: false
     };
 }
+    const skillScore =(matchedSkills.length / job.skills.length) * 40;
 
-    score += matchedSkills.length * 15;
+    score += skillScore;
 
     const experienceMatched =
         profile.experience >= job.minimumExperience &&
