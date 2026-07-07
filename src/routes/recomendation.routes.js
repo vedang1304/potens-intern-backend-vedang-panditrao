@@ -6,6 +6,20 @@ const recommendationController = require("../controllers/recomendation.controlle
 const { recommendValidator } = require("../validators/recomendation.validator");
 const validate = require("../middlewares/validate.middleware");
 
+/**
+ * @swagger
+ * /recommend:
+ *   post:
+ *     summary: Get top 3 recommended jobs
+ *     tags:
+ *       - Recommendation
+ *     requestBody:
+ *       required: true
+ *     responses:
+ *       200:
+ *         description: Top 3 recommended jobs
+ */
+
 router.post("/",recommendValidator,validate,recommendationController.recommend);
 
 

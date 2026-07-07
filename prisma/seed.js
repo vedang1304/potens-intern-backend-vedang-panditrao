@@ -11,7 +11,7 @@ async function main() {
     console.log("Adding jobs...");
 
     await prisma.job.createMany({
-  data: [
+    data: [
     {
       title: "Backend Developer",
       company: "Google",

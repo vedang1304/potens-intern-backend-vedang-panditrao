@@ -1,9 +1,17 @@
 const prisma = require("../config/prisma");
 const calculateScore = require("../utils/scorecalculator");
+const cache = require("../config/cache");
 
 class RecommendationService {
 
     async recommend(profile) {
+        const cacheKey = JSON.stringify(profile);
+
+        const cachedRecommendations = cache.get(cacheKey);
+
+        if (cachedRecommendations) {
+            return cachedRecommendations;
+        }
 
         
         const jobs = await prisma.job.findMany();
@@ -43,11 +51,13 @@ class RecommendationService {
         .filter(job => job.score > 0)
         .sort((a, b) => b.score - a.score);
 
-        return filteredRecommendations.slice(0, 3)
-        .map(job => ({...job, reason: this.generateReason(job)
-        }));
-        
+        const topRecommendations = filteredRecommendations
+            .slice(0, 3)
+            .map(job => ({...job,reason: this.generateReason(job)}));
 
+        cache.set(cacheKey, topRecommendations);
+
+        return topRecommendations;
     }
 
     async explain(itemId) {

@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./config/swagger");
 
 const recommendationRoutes = require("./routes/recomendation.routes");
 const itemRoutes = require("./routes/item.routes");
@@ -27,6 +29,8 @@ app.get("/", (req, res) => {
 app.use("/recommend", recommendationRoutes);
 app.use("/items", itemRoutes);
 app.use("/explain", explainRoutes);
+
+app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerSpec));
 
 
 app.use((req, res) => {
