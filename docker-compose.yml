@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:16
+
+    container_name: recommendation_postgres
+
+    restart: always
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: recommendation_api
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+
+    build: .
+
+    container_name: recommendation_api
+
+    depends_on:
+      - postgres
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/recommendation_api?schema=public
+    command: >
+      sh -c "
+      npx prisma migrate deploy &&
+      npx prisma db seed &&
+      npm start
+      "
+
+volumes:
+  postgres_data:
