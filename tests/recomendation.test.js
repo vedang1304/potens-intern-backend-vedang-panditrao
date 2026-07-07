@@ -1,3 +1,8 @@
+const request = require("supertest");
+const app = require("../src/server");
+const prisma = require("../src/config/prisma");
+
+
 it("should return 400 when skills are missing", async () => {
     const response = await request(app)
         .post("/recommend")
@@ -20,11 +25,12 @@ it("should return 400 when experience is missing", async () => {
 
 it("should return eligibility explanation", async () => {
 
+    const job = await prisma.job.findFirst();
+
     const response = await request(app)
-        .get("/explain/1");
+        .get(`/explain/${job.id}`);
 
     expect(response.statusCode).toBe(200);
-
     expect(response.body.success).toBe(true);
 
 });
